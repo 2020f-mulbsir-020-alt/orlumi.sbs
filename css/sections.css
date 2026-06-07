@@ -1,0 +1,1326 @@
+/* ============================================
+   SECTION 1 — THE LIGHT DOOR
+   ============================================ */
+
+.section--light-door {
+  background: #000;
+  height: 300vh;
+  min-height: 300vh;
+}
+
+.light-door__darkness {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: 1;
+  transition: opacity 0.3s;
+}
+
+.light-door__beam {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100vh;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(248, 247, 242, 0.3) 20%,
+    rgba(248, 247, 242, 0.9) 50%,
+    rgba(248, 247, 242, 0.3) 80%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 20px rgba(248, 247, 242, 0.5),
+    0 0 60px rgba(231, 183, 216, 0.3),
+    0 0 100px rgba(185, 217, 255, 0.2);
+  z-index: 2;
+  transition: width 0.1s linear;
+  will-change: width;
+}
+
+.light-door__doorway {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.light-door__glow-left,
+.light-door__glow-right {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+}
+
+.light-door__glow-left {
+  left: 0;
+  background: linear-gradient(90deg, rgba(248, 247, 242, 0.08), transparent);
+}
+
+.light-door__glow-right {
+  right: 0;
+  background: linear-gradient(-90deg, rgba(248, 247, 242, 0.08), transparent);
+}
+
+.light-door__particles {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.light-door__logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 12vw, 8rem);
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: var(--opal-white);
+  display: flex;
+  gap: 0.1em;
+  justify-content: center;
+}
+
+.logo-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  text-shadow: 0 0 30px rgba(248, 247, 242, 0.5);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.logo-letter.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.light-door__tagline {
+  font-family: var(--font-heading);
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--aurora-rose);
+  margin-top: 1.5rem;
+  opacity: 0;
+  transition: opacity 1s ease 0.5s;
+}
+
+.light-door__tagline.visible {
+  opacity: 0.7;
+}
+
+.scroll-hint {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 6;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.scroll-hint.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-hint__line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, var(--opal-white), transparent);
+  animation: scroll-pulse 2s ease infinite;
+}
+
+.scroll-hint__text {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(248, 247, 242, 0.4);
+}
+
+@keyframes scroll-pulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* ============================================
+   SECTION 2 — PRISM CORRIDOR
+   ============================================ */
+
+.section--prism-corridor {
+  background: var(--bg);
+  padding-bottom: 6rem;
+}
+
+.corridor {
+  position: relative;
+  padding: 2rem;
+}
+
+.corridor__ambient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(231, 183, 216, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 50%, rgba(185, 217, 255, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.prism-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.prism-item {
+  position: relative;
+  text-align: center;
+  padding: 3rem 2rem;
+  cursor: default;
+  transition: transform var(--transition-soft);
+}
+
+.prism-item__shape {
+  width: 80px;
+  height: 100px;
+  margin: 0 auto 2rem;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: prism-float 6s ease-in-out infinite;
+  transition: transform 0.5s ease;
+}
+
+.prism-item:nth-child(2) .prism-item__shape { animation-delay: -1s; }
+.prism-item:nth-child(3) .prism-item__shape { animation-delay: -2s; }
+.prism-item:nth-child(4) .prism-item__shape { animation-delay: -3s; }
+.prism-item:nth-child(5) .prism-item__shape { animation-delay: -4s; }
+.prism-item:nth-child(6) .prism-item__shape { animation-delay: -5s; }
+
+.prism-item__face {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+.prism-item__face:nth-child(1) {
+  background: linear-gradient(135deg, var(--aurora-rose), transparent);
+  transform: rotateY(0deg) translateZ(30px);
+  opacity: 0.7;
+}
+
+.prism-item__face:nth-child(2) {
+  background: linear-gradient(135deg, var(--crystal-blue), transparent);
+  transform: rotateY(120deg) translateZ(30px);
+  opacity: 0.7;
+}
+
+.prism-item__face:nth-child(3) {
+  background: linear-gradient(135deg, var(--opal-white), transparent);
+  transform: rotateY(240deg) translateZ(30px);
+  opacity: 0.7;
+}
+
+.prism-item__light {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  transform: translate(-50%, -60%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
+}
+
+.prism-item[data-category="illumination"] .prism-item__light {
+  background: radial-gradient(circle, rgba(248, 247, 242, 0.3), transparent 70%);
+}
+.prism-item[data-category="reflection"] .prism-item__light {
+  background: radial-gradient(circle, rgba(185, 217, 255, 0.3), transparent 70%);
+}
+.prism-item[data-category="color"] .prism-item__light {
+  background: radial-gradient(circle, rgba(231, 183, 216, 0.3), transparent 70%);
+}
+.prism-item[data-category="atmosphere"] .prism-item__light {
+  background: radial-gradient(circle, rgba(196, 181, 232, 0.3), transparent 70%);
+}
+.prism-item[data-category="architecture"] .prism-item__light {
+  background: radial-gradient(circle, rgba(245, 215, 142, 0.3), transparent 70%);
+}
+.prism-item[data-category="motion"] .prism-item__light {
+  background: radial-gradient(circle, rgba(168, 216, 185, 0.3), transparent 70%);
+}
+
+.prism-item:hover .prism-item__light,
+.prism-item:focus-within .prism-item__light {
+  opacity: 1;
+  transform: translate(-50%, -60%) scale(1.5);
+}
+
+.prism-item:hover .prism-item__shape {
+  transform: scale(1.15) rotateY(30deg);
+}
+
+.prism-item__title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.prism-item__desc {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  max-width: 260px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+@keyframes prism-float {
+  0%, 100% { transform: translateY(0) rotateY(0deg); }
+  50% { transform: translateY(-12px) rotateY(180deg); }
+}
+
+/* ============================================
+   SECTION 3 — REFLECTION POOLS
+   ============================================ */
+
+.section--reflection-pools {
+  background: linear-gradient(180deg, var(--bg) 0%, #f0eeea 100%);
+  padding-bottom: 6rem;
+}
+
+.pools-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.pool {
+  position: relative;
+  height: 400px;
+  border-radius: 2px;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.pool__sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #B9D9FF 0%,
+    #E7B7D8 30%,
+    #F8F7F2 60%,
+    #FCFBF8 100%
+  );
+}
+
+.pool__sky--dawn {
+  background: linear-gradient(
+    180deg,
+    #F5D78E 0%,
+    #E7B7D8 25%,
+    #F8F7F2 55%,
+    #FCFBF8 100%
+  );
+}
+
+.pool__sky--twilight {
+  background: linear-gradient(
+    180deg,
+    #4a3f6b 0%,
+    #C4B5E8 30%,
+    #E7B7D8 55%,
+    #1a1520 100%
+  );
+}
+
+.pool__ripple-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.pool__surface {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(
+    180deg,
+    rgba(185, 217, 255, 0.15) 0%,
+    rgba(248, 247, 242, 0.05) 40%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+.pool__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem;
+  z-index: 4;
+  transform: translateY(100%);
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, transparent 100%);
+  color: var(--opal-white);
+}
+
+.pool.revealed .pool__content {
+  transform: translateY(0);
+}
+
+.pool__title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.pool__text {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  line-height: 1.7;
+  max-width: 500px;
+}
+
+/* ============================================
+   SECTION 4 — SPECTRUM CHAMBER
+   ============================================ */
+
+.section--spectrum-chamber {
+  background: #1a1a1a;
+  color: var(--opal-white);
+  padding-bottom: 6rem;
+  transition: background 1s ease;
+}
+
+.chamber {
+  position: relative;
+  width: min(90vw, 700px);
+  height: min(90vw, 700px);
+  margin: 2rem auto;
+  border-radius: 50%;
+}
+
+.chamber__ring {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  border: 1px solid rgba(248, 247, 242, 0.1);
+  animation: ring-pulse 4s ease infinite;
+}
+
+@keyframes ring-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.02); opacity: 0.6; }
+}
+
+.chamber__ambient {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--chamber-color, rgba(231, 183, 216, 0.15)) 0%, transparent 70%);
+  transition: background 1s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.spectrum-zone {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.spectrum-zone:nth-child(2) { top: 5%; left: 50%; transform: translateX(-50%); }
+.spectrum-zone:nth-child(3) { top: 25%; right: 5%; }
+.spectrum-zone:nth-child(4) { bottom: 25%; right: 5%; }
+.spectrum-zone:nth-child(5) { bottom: 5%; left: 50%; transform: translateX(-50%); }
+.spectrum-zone:nth-child(6) { bottom: 25%; left: 5%; }
+.spectrum-zone:nth-child(7) { top: 25%; left: 5%; }
+
+.spectrum-zone__glow {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.spectrum-zone--rose .spectrum-zone__glow { background: radial-gradient(circle, rgba(231, 183, 216, 0.4), transparent); }
+.spectrum-zone--opal .spectrum-zone__glow { background: radial-gradient(circle, rgba(248, 247, 242, 0.4), transparent); }
+.spectrum-zone--crystal .spectrum-zone__glow { background: radial-gradient(circle, rgba(185, 217, 255, 0.4), transparent); }
+.spectrum-zone--gold .spectrum-zone__glow { background: radial-gradient(circle, rgba(245, 215, 142, 0.4), transparent); }
+.spectrum-zone--violet .spectrum-zone__glow { background: radial-gradient(circle, rgba(196, 181, 232, 0.4), transparent); }
+.spectrum-zone--emerald .spectrum-zone__glow { background: radial-gradient(circle, rgba(168, 216, 185, 0.4), transparent); }
+
+.spectrum-zone.active .spectrum-zone__glow,
+.spectrum-zone:hover .spectrum-zone__glow {
+  opacity: 1;
+}
+
+.spectrum-zone.active,
+.spectrum-zone:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.spectrum-zone:nth-child(2).active,
+.spectrum-zone:nth-child(2):hover { transform: translateX(-50%) scale(1.1); }
+.spectrum-zone:nth-child(5).active,
+.spectrum-zone:nth-child(5):hover { transform: translateX(-50%) scale(1.1); }
+
+.spectrum-zone__label {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+.spectrum-zone__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 10;
+}
+
+.spectrum-zone.active .spectrum-zone__content {
+  opacity: 1;
+}
+
+.spectrum-zone__content h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.spectrum-zone__content p {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+/* ============================================
+   SECTION 5 — FLOATING LANTERNS
+   ============================================ */
+
+.section--floating-lanterns {
+  background: #0a0a12;
+  min-height: 100vh;
+  position: relative;
+}
+
+.lanterns-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.lanterns-overlay {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  min-height: 100vh;
+}
+
+.lantern-detail {
+  position: fixed;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: var(--opal-white);
+  max-width: 400px;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(248, 247, 242, 0.1);
+  border-radius: 4px;
+  transition: opacity 0.4s ease;
+}
+
+.lantern-detail__type {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--aurora-rose);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.lantern-detail__title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.lantern-detail__text {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+/* ============================================
+   SECTION 6 — CRYSTAL ATRIUM
+   ============================================ */
+
+.section--crystal-atrium {
+  background: linear-gradient(180deg, #0a0a12 0%, var(--bg) 30%, var(--bg) 100%);
+  padding-bottom: 8rem;
+}
+
+.atrium {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 4rem;
+  padding: 4rem 2rem;
+  min-height: 70vh;
+}
+
+.crystal {
+  position: relative;
+  width: 200px;
+  height: 280px;
+  cursor: pointer;
+  transition: transform 0.6s ease;
+}
+
+.crystal--tall {
+  width: 160px;
+  height: 380px;
+}
+
+.crystal--wide {
+  width: 280px;
+  height: 220px;
+}
+
+.crystal__structure {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  animation: crystal-shimmer 8s ease-in-out infinite;
+}
+
+.crystal__facet {
+  position: absolute;
+  opacity: 0.4;
+  transition: opacity 0.5s ease;
+}
+
+.crystal__facet--1 {
+  top: 0; left: 25%; width: 50%; height: 60%;
+  background: linear-gradient(135deg, rgba(185, 217, 255, 0.6), rgba(231, 183, 216, 0.3));
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+.crystal__facet--2 {
+  top: 10%; left: 10%; width: 35%; height: 50%;
+  background: linear-gradient(135deg, rgba(248, 247, 242, 0.5), rgba(185, 217, 255, 0.2));
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  transform: rotateY(-30deg);
+}
+
+.crystal__facet--3 {
+  top: 10%; right: 10%; width: 35%; height: 50%;
+  background: linear-gradient(135deg, rgba(231, 183, 216, 0.5), rgba(248, 247, 242, 0.2));
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  transform: rotateY(30deg);
+}
+
+.crystal__facet--4 {
+  bottom: 0; left: 15%; width: 70%; height: 40%;
+  background: linear-gradient(0deg, rgba(185, 217, 255, 0.3), transparent);
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+}
+
+.crystal__facet--5 {
+  bottom: 5%; left: 30%; width: 40%; height: 30%;
+  background: linear-gradient(0deg, rgba(231, 183, 216, 0.4), transparent);
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+}
+
+.crystal__facet--6 {
+  top: 30%; left: 35%; width: 30%; height: 40%;
+  background: linear-gradient(180deg, rgba(248, 247, 242, 0.6), rgba(185, 217, 255, 0.1));
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.crystal__refraction {
+  position: absolute;
+  inset: -20px;
+  background: conic-gradient(
+    from 0deg,
+    rgba(185, 217, 255, 0.1),
+    rgba(231, 183, 216, 0.1),
+    rgba(248, 247, 242, 0.1),
+    rgba(185, 217, 255, 0.1)
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+  filter: blur(20px);
+}
+
+.crystal__inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 2;
+}
+
+.crystal__inner h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.crystal__inner p {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+.crystal:hover .crystal__inner,
+.crystal:focus-within .crystal__inner {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.crystal:hover .crystal__refraction,
+.crystal:focus-within .crystal__refraction {
+  opacity: 1;
+}
+
+.crystal:hover .crystal__facet,
+.crystal:focus-within .crystal__facet {
+  opacity: 0.7;
+}
+
+.crystal:hover {
+  transform: translateY(-10px);
+}
+
+@keyframes crystal-shimmer {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
+
+/* ============================================
+   SECTION 7 — SHADOW GALLERY
+   ============================================ */
+
+.section--shadow-gallery {
+  background: #0d0d0d;
+  color: var(--opal-white);
+  padding-bottom: 6rem;
+}
+
+.gallery-hall {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.gallery__light-source {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(248, 247, 242, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.shadow-objects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 3rem;
+  padding: 4rem 0;
+}
+
+.shadow-object {
+  position: relative;
+  height: 300px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.shadow-object__form {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 80px;
+  opacity: 0.03;
+  background: var(--opal-white);
+  border-radius: 50% 50% 0 0;
+  transition: opacity 0.5s ease;
+}
+
+.shadow-object__form--column {
+  width: 30px;
+  height: 120px;
+  border-radius: 4px 4px 0 0;
+}
+
+.shadow-object__form--sphere {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  top: 35%;
+}
+
+.shadow-object__form--prism {
+  width: 0;
+  height: 0;
+  background: transparent;
+  border-left: 35px solid transparent;
+  border-right: 35px solid transparent;
+  border-bottom: 80px solid rgba(248, 247, 242, 0.03);
+}
+
+.shadow-object__projection {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.15;
+  transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+}
+
+.shadow-object[data-shadow="0"] .shadow-object__projection {
+  width: 100px;
+  height: 30px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.8), transparent);
+  border-radius: 50%;
+}
+
+.shadow-object[data-shadow="1"] .shadow-object__projection {
+  width: 80px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 2px;
+}
+
+.shadow-object[data-shadow="2"] .shadow-object__projection {
+  width: 90px;
+  height: 25px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.7), transparent);
+  border-radius: 50%;
+}
+
+.shadow-object[data-shadow="3"] .shadow-object__projection {
+  width: 0;
+  height: 0;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 25px solid rgba(0, 0, 0, 0.5);
+  background: transparent;
+}
+
+.shadow-object__content {
+  text-align: center;
+  padding: 1rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 1;
+}
+
+.shadow-object__content h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.shadow-object__content p {
+  font-size: 0.8rem;
+  opacity: 0.5;
+  line-height: 1.6;
+}
+
+.shadow-object:hover .shadow-object__projection,
+.shadow-object:focus-within .shadow-object__projection {
+  opacity: 0.6;
+  transform: translateX(-50%) scale(1.2);
+  filter: blur(1px);
+}
+
+.shadow-object:hover .shadow-object__content,
+.shadow-object:focus-within .shadow-object__content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.shadow-object:hover .shadow-object__form,
+.shadow-object:focus-within .shadow-object__form {
+  opacity: 0.08;
+}
+
+/* ============================================
+   SECTION 8 — CONSTELLATION OF VOICES
+   ============================================ */
+
+.section--constellation {
+  background: #050510;
+  min-height: 100vh;
+  position: relative;
+}
+
+.constellation-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.constellation-voices {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  min-height: 60vh;
+}
+
+.constellation-quote {
+  position: fixed;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: var(--opal-white);
+  max-width: 500px;
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.constellation-quote.visible {
+  opacity: 1;
+}
+
+.constellation-quote__text {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.constellation-quote__author {
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--aurora-rose);
+  opacity: 0.7;
+}
+
+/* ============================================
+   SECTION 9 — AURORA DOME
+   ============================================ */
+
+.section--aurora-dome {
+  background: #080818;
+  min-height: 100vh;
+  position: relative;
+}
+
+.dome {
+  position: relative;
+  min-height: 80vh;
+  overflow: hidden;
+}
+
+.aurora-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+}
+
+.dome__projections {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 3rem 2rem;
+  margin-top: 50vh;
+  color: var(--opal-white);
+}
+
+.projection {
+  display: none;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: projection-fade 1s ease;
+}
+
+.projection--active {
+  display: block;
+}
+
+.projection h3 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.projection p {
+  font-size: 0.95rem;
+  opacity: 0.7;
+  line-height: 1.7;
+}
+
+@keyframes projection-fade {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dome__floor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ============================================
+   SECTION 10 — LIGHT ASCENSION
+   ============================================ */
+
+.section--light-ascension {
+  background: #000;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.ascension {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ascension__stairs {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 60%;
+  perspective: 600px;
+}
+
+.stair {
+  position: absolute;
+  bottom: calc(var(--i) * 40px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(200px + var(--i) * 20px);
+  height: 8px;
+  background: linear-gradient(90deg, transparent, rgba(248, 247, 242, 0.15), transparent);
+  box-shadow: 0 0 20px rgba(248, 247, 242, 0.1);
+  animation: stair-glow 3s ease infinite;
+  animation-delay: calc(var(--i) * 0.2s);
+}
+
+@keyframes stair-glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+.ascension__sphere {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  transition: transform 0.8s ease, filter 0.8s ease;
+}
+
+.sphere__core {
+  position: absolute;
+  inset: 20%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--opal-white) 0%, var(--aurora-rose) 50%, transparent 100%);
+  opacity: 0.8;
+}
+
+.sphere__glow {
+  position: absolute;
+  inset: -50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(248, 247, 242, 0.3) 0%, transparent 70%);
+  animation: sphere-pulse 4s ease infinite;
+}
+
+.sphere__rays {
+  position: absolute;
+  inset: -100%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(248, 247, 242, 0.05) 10deg,
+    transparent 20deg,
+    transparent 40deg,
+    rgba(231, 183, 216, 0.05) 50deg,
+    transparent 60deg,
+    transparent 80deg,
+    rgba(185, 217, 255, 0.05) 90deg,
+    transparent 100deg
+  );
+  animation: rays-spin 20s linear infinite;
+}
+
+@keyframes sphere-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+@keyframes rays-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.ascension__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--opal-white);
+  padding: 2rem;
+}
+
+.ascension__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 3rem;
+  letter-spacing: 0.05em;
+}
+
+.enter-orlumi {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 3rem;
+  transition: transform 0.5s ease;
+}
+
+.enter-orlumi__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(248, 247, 242, 0.3);
+  transition: border-color 0.5s ease, box-shadow 0.5s ease, transform 0.5s ease;
+}
+
+.enter-orlumi__text {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+.enter-orlumi:hover .enter-orlumi__ring,
+.enter-orlumi:focus-visible .enter-orlumi__ring {
+  border-color: var(--opal-white);
+  box-shadow: 0 0 60px rgba(248, 247, 242, 0.4), 0 0 120px rgba(231, 183, 216, 0.2);
+  transform: scale(1.05);
+}
+
+.enter-orlumi:hover,
+.enter-orlumi:focus-visible {
+  outline: none;
+}
+
+.section--light-ascension.illuminated .ascension__sphere {
+  transform: translateX(-50%) scale(1.5);
+  filter: brightness(2);
+}
+
+.section--light-ascension.illuminated .sphere__glow {
+  opacity: 1;
+  transform: scale(2);
+}
+
+.section--light-ascension.illuminated {
+  background: radial-gradient(ellipse at 50% 20%, rgba(248, 247, 242, 0.15) 0%, #000 70%);
+}
+
+.ascension__contact {
+  font-style: normal;
+  opacity: 0.5;
+  font-size: 0.85rem;
+}
+
+.ascension__contact a {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--aurora-rose);
+  transition: opacity 0.3s;
+}
+
+.ascension__contact a:hover {
+  opacity: 0.8;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .prism-nav {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .pool {
+    height: 300px;
+  }
+
+  .spectrum-zone {
+    width: 90px;
+    height: 90px;
+  }
+
+  .spectrum-zone__content {
+    width: 220px;
+  }
+
+  .crystal {
+    width: 160px;
+    height: 220px;
+  }
+
+  .crystal--tall {
+    height: 300px;
+  }
+
+  .crystal--wide {
+    width: 220px;
+    height: 180px;
+  }
+
+  .ascension__stairs {
+    width: 200px;
+  }
+
+  .stair {
+    width: calc(140px + var(--i) * 15px);
+  }
+}
+
+@media (max-width: 480px) {
+  .section-header {
+    padding: 3rem 1.5rem 1.5rem;
+  }
+
+  .prism-grid {
+    gap: 2rem;
+  }
+
+  .pools-container {
+    padding: 1rem;
+  }
+
+  .chamber {
+    width: 95vw;
+    height: 95vw;
+  }
+
+  .spectrum-zone {
+    width: 70px;
+    height: 70px;
+  }
+
+  .spectrum-zone__label {
+    font-size: 0.55rem;
+  }
+}

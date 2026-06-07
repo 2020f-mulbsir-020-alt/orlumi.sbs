@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Orlumi — A House of Light. An architectural journey through illumination, color, reflection, and atmosphere.">
+  <meta name="keywords" content="Orlumi, light art, illumination, contemporary art, digital exhibition">
+  <meta name="author" content="Orlumi">
+  <meta name="theme-color" content="#FCFBF8">
+  <meta property="og:title" content="Orlumi — House of Light">
+  <meta property="og:description" content="Enter through light itself. A monumental digital gallery of illumination, reflection, and atmosphere.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://orlumi.sbs">
+  <title>Orlumi — House of Light</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=neue-montreal@400,500,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/sections.css">
+</head>
+<body>
+
+  <!-- Skip link for accessibility -->
+  <a href="#light-door" class="skip-link">Skip to experience</a>
+
+  <!-- Floating Prism Navigation -->
+  <nav class="prism-nav" aria-label="Main navigation">
+    <button class="prism-trigger" aria-expanded="false" aria-controls="nav-fragments" aria-label="Open navigation">
+      <span class="prism-shape" aria-hidden="true">
+        <span class="prism-face prism-face--1"></span>
+        <span class="prism-face prism-face--2"></span>
+        <span class="prism-face prism-face--3"></span>
+      </span>
+    </button>
+    <ul class="nav-fragments" id="nav-fragments" role="menu" hidden>
+      <li role="none"><a href="#prism-corridor" role="menuitem" data-fragment="0">Corridor</a></li>
+      <li role="none"><a href="#reflection-pools" role="menuitem" data-fragment="1">Reflections</a></li>
+      <li role="none"><a href="#spectrum-chamber" role="menuitem" data-fragment="2">Spectrum</a></li>
+      <li role="none"><a href="#shadow-gallery" role="menuitem" data-fragment="3">Gallery</a></li>
+      <li role="none"><a href="#aurora-dome" role="menuitem" data-fragment="4">Aurora</a></li>
+      <li role="none"><a href="#light-ascension" role="menuitem" data-fragment="5">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- SECTION 1: THE LIGHT DOOR -->
+    <section id="light-door" class="section section--light-door" aria-label="The Light Door">
+      <div class="light-door__darkness"></div>
+      <div class="light-door__beam" aria-hidden="true"></div>
+      <div class="light-door__doorway" aria-hidden="true">
+        <div class="light-door__glow-left"></div>
+        <div class="light-door__glow-right"></div>
+      </div>
+      <canvas class="light-door__particles" aria-hidden="true"></canvas>
+      <div class="light-door__logo">
+        <h1 class="logo-text" aria-label="Orlumi">
+          <span class="logo-letter" data-letter="O">O</span>
+          <span class="logo-letter" data-letter="R">R</span>
+          <span class="logo-letter" data-letter="L">L</span>
+          <span class="logo-letter" data-letter="U">U</span>
+          <span class="logo-letter" data-letter="M">M</span>
+          <span class="logo-letter" data-letter="I">I</span>
+        </h1>
+        <p class="light-door__tagline">House of Light</p>
+      </div>
+      <div class="scroll-hint" aria-hidden="true">
+        <span class="scroll-hint__line"></span>
+        <span class="scroll-hint__text">Scroll to enter</span>
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE PRISM CORRIDOR -->
+    <section id="prism-corridor" class="section section--prism-corridor" aria-label="The Prism Corridor">
+      <div class="section-header">
+        <h2 class="section-title">The Prism Corridor</h2>
+        <p class="section-subtitle">Light refracted through suspended geometries</p>
+      </div>
+      <div class="corridor">
+        <div class="corridor__ambient" aria-hidden="true"></div>
+        <ul class="prism-grid" role="list">
+          <li class="prism-item" data-category="illumination">
+            <div class="prism-item__shape" aria-hidden="true">
+              <div class="prism-item__face"></div>
+              <div class="prism-item__face"></div>
+              <div class="prism-item__face"></div>
+            </div>
+            <div class="prism-item__light" aria-hidden="true"></div>
+            <h3 class="prism-item__title">Illumination</h3>
+            <p class="prism-item__desc">The origin of all visible form — pure radiance given structure.</p>
+          </li>
+          <li class="prism-item" data-category="reflection">
+            <div class="prism-item__shape" aria-hidden="true">
+              <div class="prism-item__face"></div>
+              <div class="prism-item__face"></div>
+              <div class="prism-item__face"></div>
+            </div>
+            <div class="prism-item__light" aria-hidden="true"></div>
+            <h3 class="prism-item__title">Reflection</h3>
+            <p class="prism-item__desc">Light doubled, inverted, multiplied across infinite surfaces.</p>
+          </li>
+          <li class="prism-item" data-category="color">
+            <div class="prism-item__shape" aria-hidden="true">
+              <div class="prism-item__face"></div>
+              <div class="prism-item__face"></div>
+              <div class="prism-item__face"></div>
+            </div>
+            <div class="prism-item__light" aria-hidden="true"></div>
+            <h3 class="prism-item__title">Color</h3>
+            <p class="prism-item__desc">Wavelengths separated and reunited in luminous harmony.</p>
+          </li>
+          <li class="prism-item" data-category="atmosphere">
+            <div class="prism-item__shape" aria-hidden="true">
+              <div class="prism-item__face"></div>
+              <div class="prism-item__face"></div>
+              <div class="prism-item__face"></div>
+            </div>
+            <div class="prism-item__light" aria-hidden="true"></div>
+            <h3 class="prism-item__title">Atmosphere</h3>
+            <p class="prism-item__desc">The invisible medium that gives light its emotional weight.</p>
+          </li>
+          <li class="prism-item" data-category="architecture">
+            <div class="prism-item__shape" aria-hidden="true">
+              <div class="prism-item__face"></div>
+              <div class="prism-item__face"></div>
+              <div class="prism-item__face"></div>
+            </div>
+            <div class="prism-item__light" aria-hidden="true"></div>
+            <h3 class="prism-item__title">Architecture</h3>
+            <p class="prism-item__desc">Spaces sculpted by shadow, volume, and luminous geometry.</p>
+          </li>
+          <li class="prism-item" data-category="motion">
+            <div class="prism-item__shape" aria-hidden="true">
+              <div class="prism-item__face"></div>
+              <div class="prism-item__face"></div>
+              <div class="prism-item__face"></div>
+            </div>
+            <div class="prism-item__light" aria-hidden="true"></div>
+            <h3 class="prism-item__title">Motion</h3>
+            <p class="prism-item__desc">Light in transit — never still, always becoming.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION 3: THE REFLECTION POOLS -->
+    <section id="reflection-pools" class="section section--reflection-pools" aria-label="The Reflection Pools">
+      <div class="section-header">
+        <h2 class="section-title">The Reflection Pools</h2>
+        <p class="section-subtitle">Touch the surface to reveal what lies beneath</p>
+      </div>
+      <div class="pools-container">
+        <article class="pool" data-pool="0">
+          <div class="pool__sky" aria-hidden="true"></div>
+          <canvas class="pool__ripple-canvas" aria-hidden="true"></canvas>
+          <div class="pool__surface" aria-hidden="true"></div>
+          <div class="pool__content">
+            <h3 class="pool__title">Luminous Depths</h3>
+            <p class="pool__text">Beneath still water, light accumulates in layers — each reflection a memory of the sky above, each ripple a moment of discovery.</p>
+          </div>
+        </article>
+        <article class="pool" data-pool="1">
+          <div class="pool__sky pool__sky--dawn" aria-hidden="true"></div>
+          <canvas class="pool__ripple-canvas" aria-hidden="true"></canvas>
+          <div class="pool__surface" aria-hidden="true"></div>
+          <div class="pool__content">
+            <h3 class="pool__title">Mirror of Dawn</h3>
+            <p class="pool__text">At the threshold of day, pools hold the first light — soft rose and crystal blue merging into opal white horizons.</p>
+          </div>
+        </article>
+        <article class="pool" data-pool="2">
+          <div class="pool__sky pool__sky--twilight" aria-hidden="true"></div>
+          <canvas class="pool__ripple-canvas" aria-hidden="true"></canvas>
+          <div class="pool__surface" aria-hidden="true"></div>
+          <div class="pool__content">
+            <h3 class="pool__title">Twilight Resonance</h3>
+            <p class="pool__text">When day surrenders to night, reflections deepen. The water becomes a portal between luminous worlds.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 4: THE SPECTRUM CHAMBER -->
+    <section id="spectrum-chamber" class="section section--spectrum-chamber" aria-label="The Spectrum Chamber">
+      <div class="section-header">
+        <h2 class="section-title">The Spectrum Chamber</h2>
+        <p class="section-subtitle">Move through zones of pure chromatic experience</p>
+      </div>
+      <div class="chamber" role="tablist" aria-label="Color spectrum zones">
+        <div class="chamber__ring" aria-hidden="true"></div>
+        <button class="spectrum-zone spectrum-zone--rose active" role="tab" aria-selected="true" data-zone="rose" data-color="#E7B7D8">
+          <span class="spectrum-zone__glow" aria-hidden="true"></span>
+          <span class="spectrum-zone__label">Aurora Rose</span>
+          <div class="spectrum-zone__content">
+            <h3>Warm Luminescence</h3>
+            <p>The gentle pulse of dawn light — soft, enveloping, alive with possibility.</p>
+          </div>
+        </button>
+        <button class="spectrum-zone spectrum-zone--opal" role="tab" aria-selected="false" data-zone="opal" data-color="#F8F7F2">
+          <span class="spectrum-zone__glow" aria-hidden="true"></span>
+          <span class="spectrum-zone__label">Opal White</span>
+          <div class="spectrum-zone__content">
+            <h3>Pure Radiance</h3>
+            <p>The foundation of all color — luminous, translucent, infinite in its subtlety.</p>
+          </div>
+        </button>
+        <button class="spectrum-zone spectrum-zone--crystal" role="tab" aria-selected="false" data-zone="crystal" data-color="#B9D9FF">
+          <span class="spectrum-zone__glow" aria-hidden="true"></span>
+          <span class="spectrum-zone__label">Crystal Blue</span>
+          <div class="spectrum-zone__content">
+            <h3>Cool Refraction</h3>
+            <p>Light fractured through ice — sharp, clear, carrying the depth of winter skies.</p>
+          </div>
+        </button>
+        <button class="spectrum-zone spectrum-zone--gold" role="tab" aria-selected="false" data-zone="gold" data-color="#F5D78E">
+          <span class="spectrum-zone__glow" aria-hidden="true"></span>
+          <span class="spectrum-zone__label">Solar Gold</span>
+          <div class="spectrum-zone__content">
+            <h3>Golden Hour</h3>
+            <p>The last warmth before shadow — amber light that transforms everything it touches.</p>
+          </div>
+        </button>
+        <button class="spectrum-zone spectrum-zone--violet" role="tab" aria-selected="false" data-zone="violet" data-color="#C4B5E8">
+          <span class="spectrum-zone__glow" aria-hidden="true"></span>
+          <span class="spectrum-zone__label">Prism Violet</span>
+          <div class="spectrum-zone__content">
+            <h3>Deep Spectrum</h3>
+            <p>The edge of visible light — mysterious, transformative, at the boundary of perception.</p>
+          </div>
+        </button>
+        <button class="spectrum-zone spectrum-zone--emerald" role="tab" aria-selected="false" data-zone="emerald" data-color="#A8D8B9">
+          <span class="spectrum-zone__glow" aria-hidden="true"></span>
+          <span class="spectrum-zone__label">Verdant Light</span>
+          <div class="spectrum-zone__content">
+            <h3>Living Green</h3>
+            <p>Light absorbed and returned — the glow of life itself, filtered through nature's lens.</p>
+          </div>
+        </button>
+      </div>
+      <div class="chamber__ambient" aria-hidden="true"></div>
+    </section>
+
+    <!-- SECTION 5: THE FLOATING LANTERNS -->
+    <section id="floating-lanterns" class="section section--floating-lanterns" aria-label="The Floating Lanterns">
+      <div class="section-header">
+        <h2 class="section-title">The Floating Lanterns</h2>
+        <p class="section-subtitle">Stories drift through endless luminous space</p>
+      </div>
+      <canvas class="lanterns-canvas" aria-hidden="true"></canvas>
+      <div class="lanterns-overlay">
+        <div class="lantern-detail" id="lantern-detail" aria-live="polite" hidden>
+          <span class="lantern-detail__type"></span>
+          <h3 class="lantern-detail__title"></h3>
+          <p class="lantern-detail__text"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: THE CRYSTAL ATRIUM -->
+    <section id="crystal-atrium" class="section section--crystal-atrium" aria-label="The Crystal Atrium">
+      <div class="section-header">
+        <h2 class="section-title">The Crystal Atrium</h2>
+        <p class="section-subtitle">Monuments of refracted light — hover to see within</p>
+      </div>
+      <div class="atrium">
+        <article class="crystal" data-crystal="0">
+          <div class="crystal__structure" aria-hidden="true">
+            <div class="crystal__facet crystal__facet--1"></div>
+            <div class="crystal__facet crystal__facet--2"></div>
+            <div class="crystal__facet crystal__facet--3"></div>
+            <div class="crystal__facet crystal__facet--4"></div>
+            <div class="crystal__facet crystal__facet--5"></div>
+            <div class="crystal__facet crystal__facet--6"></div>
+          </div>
+          <div class="crystal__inner">
+            <h3>Prismatic Origin</h3>
+            <p>Where raw light first divides into the spectrum — the birthplace of all color in Orlumi.</p>
+          </div>
+          <div class="crystal__refraction" aria-hidden="true"></div>
+        </article>
+        <article class="crystal crystal--tall" data-crystal="1">
+          <div class="crystal__structure" aria-hidden="true">
+            <div class="crystal__facet crystal__facet--1"></div>
+            <div class="crystal__facet crystal__facet--2"></div>
+            <div class="crystal__facet crystal__facet--3"></div>
+            <div class="crystal__facet crystal__facet--4"></div>
+            <div class="crystal__facet crystal__facet--5"></div>
+            <div class="crystal__facet crystal__facet--6"></div>
+          </div>
+          <div class="crystal__inner">
+            <h3>Luminous Architecture</h3>
+            <p>Structures that exist only as light defines them — walls of radiance, floors of reflection.</p>
+          </div>
+          <div class="crystal__refraction" aria-hidden="true"></div>
+        </article>
+        <article class="crystal crystal--wide" data-crystal="2">
+          <div class="crystal__structure" aria-hidden="true">
+            <div class="crystal__facet crystal__facet--1"></div>
+            <div class="crystal__facet crystal__facet--2"></div>
+            <div class="crystal__facet crystal__facet--3"></div>
+            <div class="crystal__facet crystal__facet--4"></div>
+            <div class="crystal__facet crystal__facet--5"></div>
+            <div class="crystal__facet crystal__facet--6"></div>
+          </div>
+          <div class="crystal__inner">
+            <h3>Atmospheric Memory</h3>
+            <p>Light trapped within crystal — holding the atmosphere of moments long past, forever luminous.</p>
+          </div>
+          <div class="crystal__refraction" aria-hidden="true"></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 7: THE SHADOW GALLERY -->
+    <section id="shadow-gallery" class="section section--shadow-gallery" aria-label="The Shadow Gallery">
+      <div class="section-header section-header--light">
+        <h2 class="section-title">The Shadow Gallery</h2>
+        <p class="section-subtitle">Discover through absence — only shadows reveal the truth</p>
+      </div>
+      <div class="gallery-hall">
+        <div class="gallery__light-source" aria-hidden="true"></div>
+        <ul class="shadow-objects" role="list">
+          <li class="shadow-object" data-shadow="0">
+            <div class="shadow-object__form" aria-hidden="true"></div>
+            <div class="shadow-object__projection" aria-hidden="true"></div>
+            <div class="shadow-object__content">
+              <h3>The Absent Vessel</h3>
+              <p>What cannot be seen directly may only be known through its shadow — form inferred from absence.</p>
+            </div>
+          </li>
+          <li class="shadow-object" data-shadow="1">
+            <div class="shadow-object__form shadow-object__form--column" aria-hidden="true"></div>
+            <div class="shadow-object__projection" aria-hidden="true"></div>
+            <div class="shadow-object__content">
+              <h3>Column of Silence</h3>
+              <p>A pillar of darkness stretching across the floor — monument to light's necessary counterpart.</p>
+            </div>
+          </li>
+          <li class="shadow-object" data-shadow="2">
+            <div class="shadow-object__form shadow-object__form--sphere" aria-hidden="true"></div>
+            <div class="shadow-object__projection" aria-hidden="true"></div>
+            <div class="shadow-object__content">
+              <h3>Orbital Shadow</h3>
+              <p>A perfect circle cast by an invisible sphere — geometry revealed through darkness alone.</p>
+            </div>
+          </li>
+          <li class="shadow-object" data-shadow="3">
+            <div class="shadow-object__form shadow-object__form--prism" aria-hidden="true"></div>
+            <div class="shadow-object__projection" aria-hidden="true"></div>
+            <div class="shadow-object__content">
+              <h3>Angular Memory</h3>
+              <p>Sharp edges in soft darkness — the shadow of a prism, fractured and still.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION 8: THE CONSTELLATION OF VOICES -->
+    <section id="constellation-voices" class="section section--constellation" aria-label="The Constellation of Voices">
+      <div class="section-header section-header--light">
+        <h2 class="section-title">Constellation of Voices</h2>
+        <p class="section-subtitle">Perspectives connected across luminous space</p>
+      </div>
+      <canvas class="constellation-canvas" aria-hidden="true"></canvas>
+      <div class="constellation-voices" id="constellation-voices">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- SECTION 9: THE AURORA DOME -->
+    <section id="aurora-dome" class="section section--aurora-dome" aria-label="The Aurora Dome">
+      <div class="section-header section-header--light">
+        <h2 class="section-title">The Aurora Dome</h2>
+        <p class="section-subtitle">Ribbons of light move overhead — content projected upon them</p>
+      </div>
+      <div class="dome">
+        <canvas class="aurora-canvas" aria-hidden="true"></canvas>
+        <div class="dome__projections">
+          <div class="projection projection--active" data-projection="0">
+            <h3>Infinite Horizon</h3>
+            <p>Where earth meets sky, light creates the boundary between worlds — a line drawn in pure radiance.</p>
+          </div>
+          <div class="projection" data-projection="1">
+            <h3>Celestial Motion</h3>
+            <p>The aurora dances to rhythms older than memory — light in perpetual, graceful transit.</p>
+          </div>
+          <div class="projection" data-projection="2">
+            <h3>Luminous Weather</h3>
+            <p>Atmospheric light as phenomenon — storms of color moving across the dome's vast interior.</p>
+          </div>
+        </div>
+        <div class="dome__floor" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 10: THE LIGHT ASCENSION -->
+    <section id="light-ascension" class="section section--light-ascension" aria-label="The Light Ascension">
+      <div class="ascension">
+        <div class="ascension__stairs" aria-hidden="true">
+          <div class="stair" style="--i:0"></div>
+          <div class="stair" style="--i:1"></div>
+          <div class="stair" style="--i:2"></div>
+          <div class="stair" style="--i:3"></div>
+          <div class="stair" style="--i:4"></div>
+          <div class="stair" style="--i:5"></div>
+          <div class="stair" style="--i:6"></div>
+          <div class="stair" style="--i:7"></div>
+          <div class="stair" style="--i:8"></div>
+          <div class="stair" style="--i:9"></div>
+          <div class="stair" style="--i:10"></div>
+          <div class="stair" style="--i:11"></div>
+        </div>
+        <div class="ascension__sphere" aria-hidden="true">
+          <div class="sphere__core"></div>
+          <div class="sphere__glow"></div>
+          <div class="sphere__rays"></div>
+        </div>
+        <div class="ascension__content">
+          <h2 class="ascension__title">Every Light Begins<br>In Darkness</h2>
+          <button class="enter-orlumi" id="enter-orlumi" aria-label="Enter Orlumi">
+            <span class="enter-orlumi__ring" aria-hidden="true"></span>
+            <span class="enter-orlumi__text">Enter Orlumi</span>
+          </button>
+          <address class="ascension__contact">
+            <p>Reach the House of Light</p>
+            <a href="mailto:hello@orlumi.sbs">hello@orlumi.sbs</a>
+          </address>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/navigation.js" defer></script>
+  <script src="js/effects.js" defer></script>
+  <script src="js/sections.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>

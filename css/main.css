@@ -1,0 +1,307 @@
+/* ============================================
+   ORLUMI — Design System & Global Styles
+   ============================================ */
+
+:root {
+  --opal-white: #F8F7F2;
+  --aurora-rose: #E7B7D8;
+  --bg: #FCFBF8;
+  --text: #222222;
+  --crystal-blue: #B9D9FF;
+  --solar-gold: #F5D78E;
+  --prism-violet: #C4B5E8;
+  --verdant: #A8D8B9;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-heading: 'Neue Montreal', 'Inter', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --glow-rose: 0 0 40px rgba(231, 183, 216, 0.4);
+  --glow-blue: 0 0 40px rgba(185, 217, 255, 0.4);
+  --glow-white: 0 0 60px rgba(248, 247, 242, 0.6);
+
+  --transition-soft: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-glow: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  --nav-height: 0;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--text);
+  background: var(--bg);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+body.nav-open {
+  overflow: hidden;
+}
+
+img, canvas {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+ul[role="list"] {
+  list-style: none;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 10000;
+  padding: 0.75rem 1.5rem;
+  background: var(--text);
+  color: var(--opal-white);
+  border-radius: 4px;
+  font-size: 0.875rem;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Typography */
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.section-subtitle {
+  font-family: var(--font-heading);
+  font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-top: 0.75rem;
+}
+
+.section-header {
+  text-align: center;
+  padding: 4rem 2rem 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.section-header--light {
+  color: var(--opal-white);
+}
+
+.section-header--light .section-subtitle {
+  opacity: 0.5;
+}
+
+/* Sections base */
+.section {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+/* ============================================
+   PRISM NAVIGATION
+   ============================================ */
+
+.prism-nav {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 9000;
+}
+
+.prism-trigger {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.prism-shape {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: prism-rotate 12s linear infinite;
+  transition: transform 0.6s ease;
+}
+
+.prism-nav.open .prism-shape {
+  animation: none;
+  transform: rotateX(60deg) rotateZ(45deg) scale(0);
+  opacity: 0;
+}
+
+.prism-face {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  opacity: 0.85;
+}
+
+.prism-face--1 {
+  background: linear-gradient(135deg, var(--aurora-rose), var(--crystal-blue));
+  transform: rotateY(0deg) translateZ(14px);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  filter: drop-shadow(var(--glow-rose));
+}
+
+.prism-face--2 {
+  background: linear-gradient(135deg, var(--crystal-blue), var(--opal-white));
+  transform: rotateY(120deg) translateZ(14px);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+.prism-face--3 {
+  background: linear-gradient(135deg, var(--opal-white), var(--aurora-rose));
+  transform: rotateY(240deg) translateZ(14px);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+}
+
+@keyframes prism-rotate {
+  from { transform: rotateY(0deg) rotateX(15deg); }
+  to { transform: rotateY(360deg) rotateX(15deg); }
+}
+
+.nav-fragments {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.nav-fragments:not([hidden]) {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-fragments li {
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.nav-fragments.open li {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.nav-fragments.open li:nth-child(1) { transition-delay: 0.05s; }
+.nav-fragments.open li:nth-child(2) { transition-delay: 0.1s; }
+.nav-fragments.open li:nth-child(3) { transition-delay: 0.15s; }
+.nav-fragments.open li:nth-child(4) { transition-delay: 0.2s; }
+.nav-fragments.open li:nth-child(5) { transition-delay: 0.25s; }
+.nav-fragments.open li:nth-child(6) { transition-delay: 0.3s; }
+
+.nav-fragments a {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--opal-white);
+  padding: 0.75rem 2rem;
+  position: relative;
+  display: block;
+  transition: color var(--transition-soft), text-shadow var(--transition-glow);
+}
+
+.nav-fragments a::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0.5rem;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--aurora-rose), transparent);
+  transition: width 0.4s ease, left 0.4s ease;
+}
+
+.nav-fragments a:hover,
+.nav-fragments a:focus-visible {
+  color: var(--aurora-rose);
+  text-shadow: var(--glow-rose);
+  outline: none;
+}
+
+.nav-fragments a:hover::before,
+.nav-fragments a:focus-visible::before {
+  width: 100%;
+  left: 0;
+}
+
+/* Fragment light burst on open */
+.nav-fragment-burst {
+  position: fixed;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--aurora-rose);
+  box-shadow: 0 0 20px var(--aurora-rose), 0 0 40px var(--crystal-blue);
+  pointer-events: none;
+  z-index: 8999;
+  animation: fragment-burst 0.8s ease forwards;
+}
+
+@keyframes fragment-burst {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(40); opacity: 0; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .prism-shape { animation: none; }
+}
